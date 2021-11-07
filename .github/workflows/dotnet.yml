@@ -1,4 +1,4 @@
-name: LearnScraper Function
+name: SSLChecker Build and Test
 
 on:
   push:
