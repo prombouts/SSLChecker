@@ -4,12 +4,12 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'SSLChecker/**'
+      - 'SslChecker/**'
 
   pull_request:
     branches: [ main ]
     paths:
-      - 'SSLChecker/**'
+      - 'SslChecker/**'
 
 jobs:
   build:
@@ -24,10 +24,10 @@ jobs:
         dotnet-version: 3.1.x
     - name: Restore
       run: dotnet restore
-      working-directory: SSLChecker
+      working-directory: SslChecker
     - name: Build
       run: dotnet build --configuration Release --no-restore
-      working-directory: SSLChecker
+      working-directory: SslChecker
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-      working-directory: SSLChecker
+      working-directory: SslChecker
