@@ -12,8 +12,9 @@ Play with the domain and daysbeforeexpiry to see when you get an alert!
 If you omit daysbeforeexpiry it will take the default of 10 days
 
 ## Parameters
+
 | Name  | Value |
-|---|---|
+|-------|--------|
 | domain  | Valid domain name like github.com |
 | daysbeforeexpiry | Integer (10 by default) |
 
