@@ -1,37 +1,23 @@
-## Welcome to GitHub Pages
+## Welcome to GitHub Pages for the SSL Checker
 
-You can use the [editor on GitHub](https://github.com/prombouts/SSLChecker/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+This really simple project contains one Azure Function to check SSL certificates of public URLs on expiry.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Usage
 
-### Markdown
+- Open the Visual Studio Solution (.sln) file and run the project
+- Open Postman and do a GET request: http://localhost:7071/api/CheckSSLExpiry?domain=github.com&daysbeforeexpiry=14
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Play with the domain and daysbeforeexpiry to see when you get an alert!
 
-```markdown
-Syntax highlighted code block
+If you omit daysbeforeexpiry it will take the default of 10 days
 
-# Header 1
-## Header 2
-### Header 3
+## Parameters
+| Name  | Value |
+|---|---|
+| domain  | Valid domain name like github.com |
+| daysbeforeexpiry | Integer (10 by default) |
 
-- Bulleted
-- List
+## Result values
+If for example your SSL certificate expires in 100 days, and you call the function with 90 days, the result will be 200 with text 'No problems found'
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/prombouts/SSLChecker/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+If you call the function and the SSL certificate expires within the amount of days, you will get statuscode 500 and text 'Warning, SSL certificate is expired or expires within n days', where n is the integer you provided.
